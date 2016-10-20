@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER mpneuried
 
 RUN sudo apt-get -y update
@@ -6,7 +6,7 @@ RUN sudo apt-get -y install -f build-essential wget curl
 
 RUN wget -c -O- http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
 
-RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" | sudo tee -a /etc/apt/sources.list.d/erlang_solutions.list > /dev/null
+RUN echo "deb http://packages.erlang-solutions.com/ubuntu xenial contrib" | sudo tee -a /etc/apt/sources.list.d/erlang_solutions.list > /dev/null
 RUN sudo apt-get update
 
 RUN apt-get -f -y install erlang
