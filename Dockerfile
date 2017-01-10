@@ -2,6 +2,7 @@ FROM ubuntu:16.04
 MAINTAINER mpneuried
 
 RUN sudo apt-get -y update
+RUN apt-get install -y sudo
 RUN sudo apt-get -y install -f build-essential wget curl
 
 RUN wget -c -O- http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
