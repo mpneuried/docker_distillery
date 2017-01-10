@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER mpneuried
 
-RUN sudo apt-get -y update
+RUN apt-get -y update
 RUN apt-get install -y sudo
 RUN sudo apt-get -y install -f build-essential wget curl
 
