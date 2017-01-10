@@ -1,7 +1,8 @@
 FROM ubuntu:12.04
 MAINTAINER mpneuried
 
-RUN sudo apt-get -y update
+RUN apt-get -y update
+RUN apt-get -y install sudo
 RUN sudo apt-get -y install -f build-essential wget curl
 
 RUN wget -c -O- http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
