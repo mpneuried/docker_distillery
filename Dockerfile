@@ -18,12 +18,12 @@ RUN erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshe
 # lend by https://github.com/c0b/docker-elixir/blob/master/1.3/Dockerfile
 
 # elixir expects utf8.
-ENV ELIXIR_VERSION="v1.4.2" \
+ENV ELIXIR_VERSION="v1.5.0" \
 	LANG=C.UTF-8
 
 RUN set -xe \
 	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/releases/download/${ELIXIR_VERSION}/Precompiled.zip" \
-	&& ELIXIR_DOWNLOAD_SHA256="3ff610166612db10d3f97895972882a6912e99628e31116d22406389c1de48cc"\
+	&& ELIXIR_DOWNLOAD_SHA256="0857550097d0bf078a218f7663372f5c9a899847d73399f05ca9fa9087edf462"\
 	&& buildDeps=' \
 		unzip \
 	' \
