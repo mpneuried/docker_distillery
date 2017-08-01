@@ -15,26 +15,22 @@ RUN apt-get -f -y install erlang
 RUN erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshell
 
 # INSTALL ELIXIR
-# lend by https://github.com/c0b/docker-elixir/blob/master/1.3/Dockerfile
+# lend by https://github.com/c0b/docker-elixir/blob/master/1.5/Dockerfile
 
 # elixir expects utf8.
 ENV ELIXIR_VERSION="v1.5.0" \
 	LANG=C.UTF-8
 
 RUN set -xe \
-	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/releases/download/${ELIXIR_VERSION}/Precompiled.zip" \
+	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/archive/${ELIXIR_VERSION}.tar.gz" \
 	&& ELIXIR_DOWNLOAD_SHA256="0857550097d0bf078a218f7663372f5c9a899847d73399f05ca9fa9087edf462"\
-	&& buildDeps=' \
-		unzip \
-	' \
-	&& apt-get update \
-	&& apt-get install -y --no-install-recommends $buildDeps \
-	&& curl -fSL -o elixir-precompiled.zip $ELIXIR_DOWNLOAD_URL \
-	&& echo "$ELIXIR_DOWNLOAD_SHA256 elixir-precompiled.zip" | sha256sum -c - \
-	&& unzip -d /usr/local elixir-precompiled.zip \
-	&& rm elixir-precompiled.zip \
-	&& apt-get purge -y --auto-remove $buildDeps \
-&& rm -rf /var/lib/apt/lists/*
+	&& curl -fSL -o elixir-src.tar.gz $ELIXIR_DOWNLOAD_URL \
+	&& echo "$ELIXIR_DOWNLOAD_SHA256 elixir-src.tar.gz" | sha256sum -c - \
+	&& mkdir -p /usr/local/src/elixir \
+	&& tar -xzC /usr/local/src/elixir --strip-components=1 -f elixir-src.tar.gz \
+	&& rm elixir-src.tar.gz \
+	&& cd /usr/local/src/elixir \
+	&& make install clean
 
 RUN elixir -v
 
