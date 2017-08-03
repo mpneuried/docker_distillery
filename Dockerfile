@@ -18,7 +18,7 @@ RUN erl -eval 'erlang:display(erlang:system_info(otp_release)), halt().'  -noshe
 # lend by https://github.com/c0b/docker-elixir/blob/master/1.5/Dockerfile
 
 # elixir expects utf8.
-ENV ELIXIR_VERSION="v1.5.0" \
+ENV ELIXIR_VERSION="v1.5.1" \
 	LANG=C.UTF-8
 
 RUN set -xe \
